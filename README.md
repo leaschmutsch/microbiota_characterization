@@ -105,7 +105,7 @@ qiime feature-table summarize \
 ### STEP 7: CREATE PHYLOGENY ###
 #ALIGNMENT OF REPRESENTATIVE SEQUENCES
 qiime alignment mafft \
-  --i-sequences rep-seqs-deblur.qza \
+  --i-sequences rep-seqs-dada2.qza \
   --o-alignment alignment-rep-seqs.qza \
 
 #MASK HIGHLY VARIABLE NOISY POSITIONS IN ALIGNMENT
@@ -121,7 +121,7 @@ qiime phylogeny fasttree \
 #ROOT PHYLOGENY AT MIDPOINT
 qiime phylogeny midpoint-root \
   --i-tree fasttree-alignment-rep-seqs.qza \
-  --o-rooted-tree rooted-tree-rep-seqs.qza \
+  --o-rooted-tree rooted-tree.qza \
 
 
 
@@ -146,7 +146,7 @@ qiime taxa filter-table \
   --i-taxonomy taxonomy.qza \
   --p-exclude Archaea \
   --p-mode contains \
-  --o-filtered-table table-ddada2-noAr.qza 
+  --o-filtered-table table-dada2-noAr.qza 
 
 qiime taxa filter-table \
   --i-table table-clean.qza \
@@ -160,7 +160,7 @@ qiime feature-table filter-features \
   --i-table table-dada2-clean.qza \
   --p-min-frequency 2 \
   --o-filtered-table table-clean.qza 
-
+*table-.qza without epithelium 
 
 ### STEP 11: RAREIFY TABLE ###
  qiime diversity alpha-rarefaction \
